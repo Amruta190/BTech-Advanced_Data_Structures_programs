@@ -54,26 +54,29 @@ int main()
     cout<<"Message after appending 0's : "<<dividend<<"\n";
     tmp=binaryDivision(dividend,divisor);
     cout<<"CRC bits : ";
-    for(int i=dividend.length()-len;i<dividend.length();i++)
+    for(int i=tmp.length()-len;i<tmp.length();i++)
         cout<<tmp[i];
     cout<<"\nTransmitted data : "<<tmp;
     cout<<"\nReceiver side : \nReceived Data : ";
     string tmp1;
     cin>>tmp1;
     tmp1=binaryDivision(tmp1,divisor);
-    int i=0;
-    for(i=0;i<tmp1.length();i++)
+    cout<<"CRC bits : ";
+    for(int i=tmp1.length()-len;i<tmp1.length();i++)
+        cout<<tmp1[i];
+    int i;
+    for(i=tmp1.length()-len;i<tmp1.length();i++)
     {
-        if(dividend[i]!=tmp1[i])
+        if(tmp1[i]!='0')
             break;
     }
     if(i==tmp1.length())
     {
-        cout<<"Remainder : ";
-        for(int j=0;j<len;j++)
-            cout<<"0";
+        cout<<"\nRemainder : ";
+        for(int i=tmp1.length()-len;i<tmp1.length();i++)
+            cout<<tmp1[i];
         cout<<"\nData received correctly\n";
     }
     else
-        cout<<"Data received incorrectly\n";
+        cout<<"\nData received incorrectly\n";
 }
