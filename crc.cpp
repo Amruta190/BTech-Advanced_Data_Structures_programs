@@ -32,10 +32,11 @@ string binaryDivision(string dividend,string divisor)
         }
     }
     string str;
+    for(int i=dividend.length()-divisor.length()+1;i<=dividend.length();i++)
+        tmp[i]=arr[i];
     for(int i=0;i<dividend.length();i++)
     {
-        arr[i]+=tmp[i];
-        str.push_back(arr[i]+'0');
+        str.push_back(tmp[i]+'0');
     }
     return str;
 }
@@ -57,18 +58,22 @@ int main()
         cout<<tmp[i];
     cout<<"\nTransmitted data : "<<tmp;
     cout<<"\nReceiver side : \nReceived Data : ";
-    string tmp1=binaryDivision(tmp,divisor);
-    cout<<tmp1;
-    cout<<"\nRemainder : ";
+    string tmp1;
+    cin>>tmp1;
+    tmp1=binaryDivision(tmp1,divisor);
     int i=0;
     for(i=0;i<tmp1.length();i++)
     {
-        if(tmp[i]!=tmp1[i])
+        if(dividend[i]!=tmp1[i])
             break;
     }
     if(i==tmp1.length())
     {
+        cout<<"Remainder : ";
         for(int j=0;j<len;j++)
             cout<<"0";
+        cout<<"\nData received correctly\n";
     }
+    else
+        cout<<"Data received incorrectly\n";
 }
